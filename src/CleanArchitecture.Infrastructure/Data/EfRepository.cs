@@ -2,48 +2,45 @@
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace CleanArchitecture.Infrastructure.Data
 {
     public class EfRepository : IRepository
     {
-        private readonly AppDbContext _dbContext;
+        public readonly AppDbContext _dbContext;
 
         public EfRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public T GetById<T>(int id) where T : BaseEntity
+        public T GetById<T>(Guid id) where T : BaseEntity
         {
-            if (typeof(T) == typeof(Guestbook))
-            {
-                return _dbContext.Set<Guestbook>().Include(g => g.Entries).SingleOrDefault(e => e.Id == id) as T;
-            }
+            //if (typeof(T) == typeof(Usuario))
+            //{
+            //    return _dbContext.Set<Usuario>().Include(g => g.Entries).SingleOrDefault(e => e.Id == id) as T;
+            //}
 
             return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
         }
 
-        public T GetById<T>(int id, string include) where T : BaseEntity
+        public T GetById<T>(Guid id, string include) where T : BaseEntity
         {
             return _dbContext.Set<T>()
                 .Include(include)
                 .SingleOrDefault(e => e.Id == id);
         }
 
-        public List<T> List<T>(ISpecification<T> spec = null) where T : BaseEntity
+        public List<T> List<T>(params Expression<Func<T, object>>[] properties) where T : BaseEntity
         {
-            if (typeof(T) == typeof(Guestbook))
-            {
-                return _dbContext.Set<Guestbook>().Include(g => g.Entries).ToList() as List<T>;
-            }
-
             var query = _dbContext.Set<T>().AsQueryable();
-            if (spec != null)
+            foreach (var include in properties)
             {
-                query = query.Where(spec.Criteria);
+                query = query.Include(include);
             }
             return query.ToList();
         }

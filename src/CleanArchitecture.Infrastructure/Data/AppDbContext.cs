@@ -4,6 +4,7 @@ using System.Linq;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.SharedKernel;
 using Ardalis.EFCore.Extensions;
+using CleanArchitecture.Infrastructure.Data.Config;
 
 namespace CleanArchitecture.Infrastructure.Data
 {
@@ -11,9 +12,9 @@ namespace CleanArchitecture.Infrastructure.Data
     {
         private readonly IDomainEventDispatcher _dispatcher;
 
-        //public AppDbContext(DbContextOptions options) : base(options)
-        //{
-        //}
+        public AppDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher dispatcher)
             : base(options)
@@ -21,22 +22,26 @@ namespace CleanArchitecture.Infrastructure.Data
             _dispatcher = dispatcher;
         }
 
-        public DbSet<Guestbook> Guestbooks { get; set; }
-        public DbSet<GuestbookEntry> GuestbookEntries { get; set; }
-        public DbSet<ToDoItem> ToDoItems { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Rol> Roles { get; set; }
+        public DbSet<Propuesta> Propuestas { get; set; }
+        public DbSet<Rubro> Rubros { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyAllConfigurationsFromCurrentAssembly();
+            // modelBuilder.ApplyAllConfigurationsFromCurrentAssembly();
 
-            var navigation = modelBuilder.Entity<Guestbook>()
-                .Metadata.FindNavigation(nameof(Guestbook.Entries));
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+            modelBuilder.ApplyConfiguration(new RolConfiguracion());
+            modelBuilder.ApplyConfiguration(new RubroConfiguracion());
+            modelBuilder.ApplyConfiguration(new PropuestaConfiguracion());
 
-            navigation.SetPropertyAccessMode(PropertyAccessMode.Field);
+
             // alternately this is built-in to EF Core 2.2
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
+
         }
 
         public override int SaveChanges()
@@ -52,15 +57,15 @@ namespace CleanArchitecture.Infrastructure.Data
                 .Where(e => e.Events.Any())
                 .ToArray();
 
-            foreach (var entity in entitiesWithEvents)
-            {
-                var events = entity.Events.ToArray();
-                entity.Events.Clear();
-                foreach (var domainEvent in events)
-                {
-                    _dispatcher.Dispatch(domainEvent);
-                }
-            }
+            //foreach (var entity in entitiesWithEvents)
+            //{
+            //    var events = entity.Events.ToArray();
+            //    entity.Events.Clear();
+            //    foreach (var domainEvent in events)
+            //    {
+            //        _dispatcher.Dispatch(domainEvent);
+            //    }
+            //}
 
             return result;
         }

@@ -2,8 +2,17 @@
   <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.46" />
   
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <Compile Remove="Migrations\20210506220858_UsuariosYRoles.cs" />
+    <Compile Remove="Migrations\20210506220858_UsuariosYRoles.Designer.cs" />
+    <Compile Remove="Migrations\20210506222436_UsuarioYRol.cs" />
+    <Compile Remove="Migrations\20210506222436_UsuarioYRol.Designer.cs" />
+    <Compile Remove="Migrations\20210507174029_PropuestasYRubros.cs" />
+    <Compile Remove="Migrations\20210507174029_PropuestasYRubros.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" />
@@ -18,5 +27,9 @@
   
   <ItemGroup>
     <ProjectReference Include="..\CleanArchitecture.Core\CleanArchitecture.Core.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>
