@@ -61,5 +61,14 @@ namespace CleanArchitecture.Web.Api
         }
 
 
+        [Authorize]
+        [HttpPost]
+        public async Task<IEnumerable<UsuarioDTO>> GetAllContratistas()
+        {
+            return await _mediator.Send(new GetAllContratistas());
+        }
+
+
+
     }
 }

@@ -11,20 +11,19 @@ using MediatR;
 
 namespace CleanArchitecture.Core.Handlers.Usuarios
 {
-    public class GetAllUsersHandler : IRequestHandler<GetAllUsers, IEnumerable<UsuarioDTO>>
+    public class GetAllContratistaHandler : IRequestHandler<GetAllContratistas, IEnumerable<UsuarioDTO>>
     {
         private readonly IRepository _repository;
 
 
-        public GetAllUsersHandler(IRepository repository)
+        public GetAllContratistaHandler(IRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<IEnumerable<UsuarioDTO>> Handle(GetAllUsers request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UsuarioDTO>> Handle(GetAllContratistas request, CancellationToken cancellationToken)
         {
-
-            return _repository.List<Usuario>(t=> t.Rol).Where(u=> u.RolId == Constants.RolIdUsuario).Select(u=> new UsuarioDTO
+            return _repository.List<Usuario>(t => t.Rol).Where(u => u.RolId == Constants.RolIdContratista).Select(u => new UsuarioDTO
             {
                 Id = u.Id,
                 Nombre = u.Nombre,

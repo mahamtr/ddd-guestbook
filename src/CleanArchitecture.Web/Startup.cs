@@ -13,6 +13,7 @@ using System;
 using System.Reflection;
 using System.Text;
 
+
 namespace CleanArchitecture.Web
 {
 	public class Startup
@@ -31,7 +32,7 @@ namespace CleanArchitecture.Web
 
             services.AddDbContext(Configuration);
 
-            services.AddControllersWithViews().AddNewtonsoftJson();
+			services.AddControllersWithViews();
 			services.AddRazorPages();
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 						   .AddJwtBearer(options =>
@@ -49,7 +50,31 @@ namespace CleanArchitecture.Web
 							   };
 						   });
 
-			services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }));
+			services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+
+				var jwtSecurityScheme = new OpenApiSecurityScheme
+				{
+					Scheme = "bearer",
+					BearerFormat = "JWT",
+					Name = "JWT Authentication",
+					In = ParameterLocation.Header,
+					Type = SecuritySchemeType.Http,
+					Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+					Reference = new OpenApiReference
+					{
+						Id = JwtBearerDefaults.AuthenticationScheme,
+						Type = ReferenceType.SecurityScheme
+					}
+				};
+
+				c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
+				c.AddSecurityRequirement(new OpenApiSecurityRequirement
+	{
+		{ jwtSecurityScheme, Array.Empty<string>() }
+	});
+			});
 			services.AddMediatR(Assembly.GetExecutingAssembly());
 			return ContainerSetup.InitializeWeb(Assembly.GetExecutingAssembly(), services);
 		}

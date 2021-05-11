@@ -21,6 +21,7 @@
     <PackageReference Update="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="5.0.5" />
     <PackageReference Update="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
     <PackageReference Update="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+    <PackageReference Update="Swashbuckle.AspNetCore" Version="6.1.4" />
 
 
   </ItemGroup>
