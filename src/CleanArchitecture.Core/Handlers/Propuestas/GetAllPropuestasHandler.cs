@@ -26,6 +26,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
             var props = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario);
             return props.Select(prop => new PropuestaDTO
             {
+                Id = prop.Id,
                 Nombre = prop.Nombre,
                 Descripcion = prop.Descripcion,
                 NombreContratista = $"{prop.Contratista.Nombre} + {prop.Contratista.Apellido}",

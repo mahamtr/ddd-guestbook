@@ -29,7 +29,7 @@ namespace CleanArchitecture.Infrastructure.Migrations
                     ContratistaId = table.Column<Guid>(nullable: false),
                     Nombre = table.Column<string>(nullable: false),
                     Descripcion = table.Column<string>(nullable: false),
-                    Monto = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
+                    Monto = table.Column<decimal>(type: "decimal(13,4)", nullable: false)
                 },
                 constraints: table =>
                 {

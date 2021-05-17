@@ -51,5 +51,19 @@ namespace CleanArchitecture.Web.Api
             return await _mediator.Send(new GetMyPropuestas(userId));
         }
 
+        [HttpDelete]
+        [Authorize]
+        public async Task<Unit> DeletePropuestaById([FromBody] DeletePropuestaRequest request)
+        {
+            return await _mediator.Send(new DeletePropuesta(request.Id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<PropuestaDTO> UpdatePropuestaById([FromBody] UpdatePropuestaByIdRequest request)
+        {
+            return await _mediator.Send(new UpdatePropuestaById(request.Id,request.ContratistaId,request.RubroId,request.Monto,request.Nombre,request.Descripcion));
+        }
+
     }
 }

@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" PrivateAssets="All" />
     <PackageReference Include="NETStandard.Library" />
-    <PackageReference Include="Swashbuckle.AspNetCore"  />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
  
   </ItemGroup>
   
@@ -26,6 +26,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="Filters\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   

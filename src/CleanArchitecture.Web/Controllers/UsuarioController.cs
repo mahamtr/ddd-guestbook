@@ -18,15 +18,17 @@ namespace CleanArchitecture.Web.Api
     public class UsuarioController : BaseApiController
     {
         private IConfiguration _config;
-        private IUserService _userService;
         private readonly IMediator _mediator;
 
-        public UsuarioController(IConfiguration config, IAuthService authService, IUserService userService, IMediator mediator)
+
+        public UsuarioController(IConfiguration config, IMediator mediator)
         {
             _config = config;
-            _userService = userService;
             _mediator = mediator;
         }
+
+
+
 
 
         [AllowAnonymous]

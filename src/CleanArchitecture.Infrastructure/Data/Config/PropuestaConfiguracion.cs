@@ -17,7 +17,7 @@ namespace CleanArchitecture.Infrastructure.Data.Config
                 .IsRequired();
             builder.Property(t => t.RubroId)
     .IsRequired();
-            builder.Property(t => t.Monto).HasColumnType("decimal(5,2)")
+            builder.Property(t => t.Monto).HasColumnType("decimal(13,4)")
               .IsRequired();
             builder.Property(t => t.Descripcion)
    .IsRequired();

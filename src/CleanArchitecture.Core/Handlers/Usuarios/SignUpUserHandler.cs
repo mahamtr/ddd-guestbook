@@ -6,6 +6,7 @@ using CleanArchitecture.Core.Events.Usuarios;
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Responses;
 using CleanArchitecture.Core.Services;
+using CleanArchitecture.Interfaces;
 using MediatR;
 
 namespace CleanArchitecture.Core.Handlers.Usuarios

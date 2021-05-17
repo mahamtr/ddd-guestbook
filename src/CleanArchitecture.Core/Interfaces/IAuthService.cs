@@ -1,6 +1,6 @@
 using System;
 
-namespace CleanArchitecture.Core.Services
+namespace CleanArchitecture.Interfaces
 {
     public interface IAuthService
     {

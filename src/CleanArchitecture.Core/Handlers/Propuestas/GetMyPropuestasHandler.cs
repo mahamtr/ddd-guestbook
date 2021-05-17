@@ -38,10 +38,11 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
 
             return props.Select(prop => new PropuestaDTO
             {
+                Id = prop.Id,
                 Nombre = prop.Nombre,
                 Descripcion = prop.Descripcion,
-                NombreContratista = $"{prop.Contratista.Nombre} + {prop.Contratista.Apellido}",
-                NombreUsuario = $"{prop.Usuario.Nombre} + {prop.Usuario.Apellido}",
+                NombreContratista = $"{prop.Contratista.Nombre} {prop.Contratista.Apellido}",
+                NombreUsuario = $"{prop.Usuario.Nombre} {prop.Usuario.Apellido}",
                 Monto = prop.Monto,
                 Rubro = prop.Rubro.Nombre,
 

@@ -6,7 +6,7 @@ using System.Text;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces;
 
-namespace CleanArchitecture.Core.Services
+namespace CleanArchitecture.Interfaces
 {
     public interface IUserService
     {

@@ -30,7 +30,6 @@ namespace CleanArchitecture.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            // modelBuilder.ApplyAllConfigurationsFromCurrentAssembly();
 
             modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
             modelBuilder.ApplyConfiguration(new RolConfiguracion());
@@ -38,8 +37,6 @@ namespace CleanArchitecture.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new PropuestaConfiguracion());
 
 
-            // alternately this is built-in to EF Core 2.2
-            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
 
         }
@@ -48,24 +45,13 @@ namespace CleanArchitecture.Infrastructure.Data
         {
             int result = base.SaveChanges();
 
-            // ignore events if no dispatcher provided
             if (_dispatcher == null) return result;
 
-            // dispatch events only if save was successful
             var entitiesWithEvents = ChangeTracker.Entries<BaseEntity>()
                 .Select(e => e.Entity)
                 .Where(e => e.Events.Any())
                 .ToArray();
 
-            //foreach (var entity in entitiesWithEvents)
-            //{
-            //    var events = entity.Events.ToArray();
-            //    entity.Events.Clear();
-            //    foreach (var domainEvent in events)
-            //    {
-            //        _dispatcher.Dispatch(domainEvent);
-            //    }
-            //}
 
             return result;
         }

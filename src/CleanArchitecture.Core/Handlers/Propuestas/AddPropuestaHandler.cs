@@ -22,7 +22,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
 
         public async Task<PropuestaDTO> Handle(AddPropuesta request, CancellationToken cancellationToken)
         {
-             var propuesta = _repository.Add<Propuesta>(new Propuesta {
+             var propuesta = _repository.Add(new Propuesta {
                 UsuarioId= request.userId,
                 ContratistaId = request.contratistaId,
                 Monto = request.monto,
@@ -32,10 +32,11 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
             });
             var prop = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario).Find(p=> p.Id == propuesta.Id);
             return new PropuestaDTO {
+                Id = prop.Id,
             Nombre = prop.Nombre,
             Descripcion = prop.Descripcion,
-            NombreContratista = $"{prop.Contratista.Nombre} + {prop.Contratista.Apellido}",
-            NombreUsuario = $"{prop.Usuario.Nombre} + {prop.Usuario.Apellido}",
+            NombreContratista = $"{prop.Contratista.Nombre} {prop.Contratista.Apellido}",
+            NombreUsuario = $"{prop.Usuario.Nombre} {prop.Usuario.Apellido}",
             Monto = prop.Monto,
             Rubro = prop.Rubro.Nombre,
 

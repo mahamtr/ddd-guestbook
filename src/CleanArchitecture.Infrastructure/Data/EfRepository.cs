@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Core.Entities;
-using CleanArchitecture.Core.Interfaces;
+﻿using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.SharedKernel;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,10 +19,7 @@ namespace CleanArchitecture.Infrastructure.Data
 
         public T GetById<T>(Guid id) where T : BaseEntity
         {
-            //if (typeof(T) == typeof(Usuario))
-            //{
-            //    return _dbContext.Set<Usuario>().Include(g => g.Entries).SingleOrDefault(e => e.Id == id) as T;
-            //}
+
 
             return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
         }

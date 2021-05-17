@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
 using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Interfaces;
+using CleanArchitecture.Interfaces;
 using Microsoft.Extensions.Configuration;
 
 namespace CleanArchitecture.Core.Services

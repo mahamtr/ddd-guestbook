@@ -1,3 +1,5 @@
+using System;
+
 namespace CleanArchitecture.Core.Responses
 {
     public class PropuestaDTO
@@ -8,5 +10,6 @@ namespace CleanArchitecture.Core.Responses
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public decimal Monto{ get; set; }
+        public Guid Id { get; set; }
     }
 }
