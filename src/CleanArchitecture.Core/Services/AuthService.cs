@@ -31,8 +31,10 @@ namespace CleanArchitecture.Core.Services
             }
 
             string hashed = GenerateHash(Password);
-            return string.Equals(hashed, user.CredencialHash);
+            return CompareHash(hashed, user.CredencialHash);
         }
+
+        public bool CompareHash(string databaseHash, string generatedHash) => string.Equals(databaseHash, generatedHash);
 
         public string GenerateJSONWebToken(Guid userId, string key, string issuer, string audience)
         {
