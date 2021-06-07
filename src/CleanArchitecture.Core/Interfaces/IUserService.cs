@@ -10,6 +10,6 @@ namespace CleanArchitecture.Interfaces
 {
     public interface IUserService
     {
-        string SignUp(string nombre, string apellido, string password, string correo, Guid rolId);
+        string SignUp(string nombre, string apellido, string password, string correo, Guid rolId,string sexo, string Image_URL, DateTime? fecha);
     }
 }

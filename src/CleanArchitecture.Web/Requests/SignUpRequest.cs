@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CleanArchitecture.Web.Requests
 {
@@ -18,5 +19,11 @@ namespace CleanArchitecture.Web.Requests
 
         [Required(ErrorMessage = "Required")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Sexo{ get; set; }
+        [Required(ErrorMessage = "Required")]
+        public string Image_URL { get; set; }
+        public DateTime? Fecha{ get; set; }
+
     }
 }

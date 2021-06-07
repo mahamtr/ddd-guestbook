@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Events.Propuestas;
+using CleanArchitecture.Core.Helpers;
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Responses;
 using MediatR;
@@ -33,6 +34,9 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 NombreUsuario = $"{prop.Usuario.Nombre} + {prop.Usuario.Apellido}",
                 Monto = prop.Monto,
                 Rubro = prop.Rubro.Nombre,
+                Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
+                Created = prop.Created,
+                Updated = prop.Updated
 
             });
         }

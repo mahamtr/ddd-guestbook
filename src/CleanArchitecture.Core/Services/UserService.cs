@@ -21,13 +21,13 @@ namespace CleanArchitecture.Core.Services
             _config = config;
         }
 
-        public string SignUp(string nombre, string apellido, string password, string correo, Guid rolId)
+        public string SignUp(string nombre, string apellido, string password, string correo, Guid rolId,string sexo, string ImageURL, DateTime? fecha)
         {
             var user = _repository.List<Usuario>(   ).FirstOrDefault(a => a.Correo == correo);
             if(user != null) throw  new Exception("Correo ya existe");
             var passwdHash = _authService.GenerateHash(password);
             _repository.Add(new Usuario
-                {Nombre = nombre, Apellido = apellido, Correo = correo, CredencialHash = passwdHash, RolId = rolId});
+                {Nombre = nombre, Apellido = apellido, Correo = correo, CredencialHash = passwdHash, RolId = rolId,Sexo = sexo, Image_URL = ImageURL, Fecha = fecha?? DateTime.UtcNow});
              user = _repository.List<Usuario>().FirstOrDefault(a => a.Correo == correo);
             return _authService.GenerateJSONWebToken(user.Id,_config["Jwt:Key"],_config["JWT:Issuer"],_config["JWT:Audience"]);
         }

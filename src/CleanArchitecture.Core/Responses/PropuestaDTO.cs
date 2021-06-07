@@ -11,5 +11,8 @@ namespace CleanArchitecture.Core.Responses
         public string Descripcion { get; set; }
         public decimal Monto{ get; set; }
         public Guid Id { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Updated{ get; set; }
+        public string Status{ get; set; }
     }
 }

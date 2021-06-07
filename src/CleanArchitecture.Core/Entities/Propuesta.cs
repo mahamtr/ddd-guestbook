@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CleanArchitecture.Core.Helpers;
 
 namespace CleanArchitecture.Core.Entities
 {
@@ -16,6 +17,9 @@ namespace CleanArchitecture.Core.Entities
         public virtual string Nombre{ get; set; }
         public virtual string Descripcion { get; set; }
         public virtual decimal Monto{ get; set; }
+        public virtual DateTime Created{ get; set; }
+        public virtual DateTime Updated{ get; set; }
+        public virtual PropuestasStatus Status{ get; set; }
 
 
     }

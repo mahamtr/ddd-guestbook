@@ -26,6 +26,10 @@ namespace CleanArchitecture.Web.Requests
         [Required(ErrorMessage = "Required")]
 
         public decimal Monto{ get; set; }
+        [Required(ErrorMessage = "Required")]
+
+        public int Status{ get; set; }
+
 
     }
 }

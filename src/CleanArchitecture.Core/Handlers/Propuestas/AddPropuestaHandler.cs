@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Events.Propuestas;
+using CleanArchitecture.Core.Helpers;
 using CleanArchitecture.Core.Interfaces;
 using CleanArchitecture.Core.Responses;
 using MediatR;
@@ -28,18 +29,23 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 Monto = request.monto,
                 Nombre = request.nombre,
                 Descripcion= request.descripcion,
-                RubroId = request.rubroId
-            });
+                RubroId = request.rubroId,
+                Created = DateTime.UtcNow,
+                Updated = DateTime.UtcNow,
+                Status = Helpers.PropuestasStatus.EnRevision,
+             });
             var prop = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario).Find(p=> p.Id == propuesta.Id);
             return new PropuestaDTO {
                 Id = prop.Id,
-            Nombre = prop.Nombre,
-            Descripcion = prop.Descripcion,
-            NombreContratista = $"{prop.Contratista.Nombre} {prop.Contratista.Apellido}",
-            NombreUsuario = $"{prop.Usuario.Nombre} {prop.Usuario.Apellido}",
-            Monto = prop.Monto,
-            Rubro = prop.Rubro.Nombre,
-
+                Nombre = prop.Nombre,
+                Descripcion = prop.Descripcion,
+                NombreContratista = $"{prop.Contratista.Nombre} {prop.Contratista.Apellido}",
+                NombreUsuario = $"{prop.Usuario.Nombre} {prop.Usuario.Apellido}",
+                Monto = prop.Monto,
+                Rubro = prop.Rubro.Nombre,
+                Updated = prop.Updated,
+                Created = prop.Created,
+                Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
             };
 
         }

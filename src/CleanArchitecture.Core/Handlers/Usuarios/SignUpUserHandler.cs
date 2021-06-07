@@ -25,14 +25,17 @@ namespace CleanArchitecture.Core.Handlers.Usuarios
         public async Task<UserInfoResponse> Handle(SignUpUser request, CancellationToken cancellationToken)
         {
             var token = _userService.SignUp(request.Nombre, request.Apellido, request.Password, request.Correo,
-                request.RolId);
+                request.RolId,request.Sexo,request.Image_URL,request.Fecha);
             var user = _repository.List<Usuario>(t=> t.Rol).First(u=> u.Correo == request.Correo);
             return  new UserInfoResponse
             {
                 Token = token,
                 Nombre = user.Nombre,
                 Apellido = user.Apellido,
-                Rol = user.Rol?.Nombre
+                Rol = user.Rol?.Nombre,
+                Sexo = user.Sexo,
+                Fecha = user.Fecha,
+                Image_URL = user.Image_URL
             };
         }
     }

@@ -15,6 +15,10 @@ namespace CleanArchitecture.Infrastructure.Data.Config
             });
             builder.Property(t => t.Nombre)
                 .IsRequired();
+            builder.Property(t => t.Fecha)
+                .IsRequired().HasDefaultValueSql("getdate()");
+            builder.Property(t => t.Sexo).IsRequired().HasDefaultValue("Femenino");
+            builder.Property(t => t.Image_URL).HasMaxLength(4096).IsRequired().HasDefaultValue("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=400");
             builder.Property(t => t.Apellido)
               .IsRequired();
             builder.Property(t => t.CredencialHash)

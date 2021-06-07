@@ -37,6 +37,9 @@ namespace CleanArchitecture.Core.Handlers.Usuarios
                     Nombre = user.Nombre,
                     Apellido = user.Apellido,
                     Rol = user.Rol?.Nombre,
+                    Sexo = user.Sexo,
+                    Fecha = user.Fecha,
+                    Image_URL = user.Image_URL
                 };
             }
 

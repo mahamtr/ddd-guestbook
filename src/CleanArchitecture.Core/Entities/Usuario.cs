@@ -12,6 +12,9 @@ namespace CleanArchitecture.Core.Entities
         public virtual string CredencialHash { get; set; }
         public virtual string Nombre{ get; set; }
         public virtual string Apellido { get; set; }
+        public virtual string Image_URL { get; set; }
+        public virtual string Sexo{ get; set; }
+        public virtual DateTime Fecha{ get; set; }
         public virtual Guid RolId{ get; set; }
         public virtual Rol Rol { get; set; }
         public virtual ICollection<Propuesta> PropuestasUsuarios{ get; set; }

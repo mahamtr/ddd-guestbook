@@ -62,7 +62,7 @@ namespace CleanArchitecture.Web.Api
         [Authorize]
         public async Task<PropuestaDTO> UpdatePropuestaById([FromBody] UpdatePropuestaByIdRequest request)
         {
-            return await _mediator.Send(new UpdatePropuestaById(request.Id,request.ContratistaId,request.RubroId,request.Monto,request.Nombre,request.Descripcion));
+            return await _mediator.Send(new UpdatePropuestaById(request.Id,request.ContratistaId,request.RubroId,request.Monto,request.Nombre,request.Descripcion,request.Status));
         }
 
     }

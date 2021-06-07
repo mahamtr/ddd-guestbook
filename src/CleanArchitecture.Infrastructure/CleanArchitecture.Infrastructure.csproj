@@ -12,6 +12,12 @@
     <Compile Remove="Migrations\20210506222436_UsuarioYRol.Designer.cs" />
     <Compile Remove="Migrations\20210507174029_PropuestasYRubros.cs" />
     <Compile Remove="Migrations\20210507174029_PropuestasYRubros.Designer.cs" />
+    <Compile Remove="Migrations\20210531165732_PropuestaStatus.cs" />
+    <Compile Remove="Migrations\20210531165732_PropuestaStatus.Designer.cs" />
+    <Compile Remove="Migrations\20210531170338_PropuestaStatus.cs" />
+    <Compile Remove="Migrations\20210531170338_PropuestaStatus.Designer.cs" />
+    <Compile Remove="Migrations\20210531171200_PropuestaStatus.cs" />
+    <Compile Remove="Migrations\20210531171200_PropuestaStatus.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +36,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="Services\" />
   </ItemGroup>
 </Project>

@@ -45,6 +45,9 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 NombreUsuario = $"{prop.Usuario.Nombre} {prop.Usuario.Apellido}",
                 Monto = prop.Monto,
                 Rubro = prop.Rubro.Nombre,
+                Created= prop.Created,
+                Updated = prop.Updated,
+                                Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
 
             });
         }

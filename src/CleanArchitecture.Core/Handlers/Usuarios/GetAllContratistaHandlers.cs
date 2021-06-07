@@ -29,7 +29,10 @@ namespace CleanArchitecture.Core.Handlers.Usuarios
                 Nombre = u.Nombre,
                 Apellido = u.Apellido,
                 Correo = u.Correo,
-                Rol = u.Rol?.Nombre
+                Rol = u.Rol?.Nombre,
+                Sexo = u.Sexo,
+                Fecha = u.Fecha,
+                Image_URL = u.Image_URL
             });
         }
     }

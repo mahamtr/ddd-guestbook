@@ -44,7 +44,7 @@ namespace CleanArchitecture.Web.Api
         public async Task<UserInfoResponse> SignUpContratista([FromBody] SignUpRequest request)
         {
             return await _mediator.Send(new SignUpUser(request.Nombre, request.Apellido, request.Password,
-                request.Email, Constants.RolIdContratista));
+                request.Email, Constants.RolIdContratista, request.Sexo, request.Image_URL, request.Fecha));
         }
         
         [AllowAnonymous]
@@ -52,7 +52,7 @@ namespace CleanArchitecture.Web.Api
         public async Task<UserInfoResponse> SignUpUsuario([FromBody] SignUpRequest request)
         {
             return await _mediator.Send(new SignUpUser(request.Nombre, request.Apellido, request.Password,
-                request.Email, Constants.RolIdUsuario));
+                request.Email, Constants.RolIdUsuario,request.Sexo,request.Image_URL, request.Fecha));
         }
 
         [Authorize]
