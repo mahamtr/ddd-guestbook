@@ -26,6 +26,7 @@ namespace CleanArchitecture.Infrastructure.Data
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Propuesta> Propuestas { get; set; }
         public DbSet<Rubro> Rubros { get; set; }
+        public DbSet<Imagen> Imagenes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

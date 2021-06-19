@@ -25,7 +25,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
         public async Task<IEnumerable<PropuestaDTO>> Handle(GetMyPropuestas request, CancellationToken cancellationToken)
         {
             var user = _repository.GetById<Usuario>(request.UserId);
-            var props = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario);
+            var props = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario,t=> t.Imagenes);
              if (user.RolId == Constants.RolIdContratista)
             {
                 props = props.Where(p => p.ContratistaId == request.UserId).ToList();
@@ -48,6 +48,11 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 Created= prop.Created,
                 Updated = prop.Updated,
                                 Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
+                Imagenes = prop.Imagenes.Select(a => new ImagenDTO { URL = a.URL }),
+                ContratistaId = prop.ContratistaId,
+                RubroId = prop.RubroId,
+                UsuarioId = prop.UsuarioId
+                
 
             });
         }

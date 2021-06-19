@@ -24,7 +24,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
 
         public async Task<IEnumerable<PropuestaDTO>> Handle(GetAllPropuestas request, CancellationToken cancellationToken)
         {
-            var props = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario);
+            var props = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario, t=> t.Imagenes);
             return props.Select(prop => new PropuestaDTO
             {
                 Id = prop.Id,
@@ -36,7 +36,11 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 Rubro = prop.Rubro.Nombre,
                 Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
                 Created = prop.Created,
-                Updated = prop.Updated
+                Updated = prop.Updated,
+                Imagenes = prop.Imagenes.Select(a=> new ImagenDTO { URL = a.URL}),
+                               ContratistaId = prop.ContratistaId,
+                RubroId = prop.RubroId,
+                UsuarioId = prop.UsuarioId
 
             });
         }

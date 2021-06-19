@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CleanArchitecture.Core.Responses;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CleanArchitecture.Web.Requests
@@ -29,6 +31,11 @@ namespace CleanArchitecture.Web.Requests
         [Required(ErrorMessage = "Required")]
 
         public int Status{ get; set; }
+
+        [Required(ErrorMessage = "Required")]
+
+        public IEnumerable<ImagenDTO> Imagenes { get; set; }
+
 
 
     }

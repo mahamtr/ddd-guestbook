@@ -70,6 +70,15 @@ namespace CleanArchitecture.Web.Api
             return await _mediator.Send(new GetAllContratistas());
         }
 
+        [Authorize]
+        [HttpPost]
+        public async Task<UsuarioDTO> UpdateMyProfile([FromBody]UpdateMyProfileRequest request)
+        {
+            var userId = new Guid((this.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            return await _mediator.Send(new UpdateMyProfile(request.Nombre,request.Apellido,request.ImagenURL,request.Sexo,userId));
+        }
+
+
 
 
     }

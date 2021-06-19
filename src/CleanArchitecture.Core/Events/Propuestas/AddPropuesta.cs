@@ -13,8 +13,10 @@ namespace CleanArchitecture.Core.Events.Propuestas
         public decimal monto;
         public string nombre;
         public string descripcion;
+        public IEnumerable<ImagenDTO> Imagenes { get; set; }
 
-        public AddPropuesta(Guid userId, Guid contratistaId, Guid rubroId, decimal monto, string nombre, string descripcion)
+
+        public AddPropuesta(Guid userId, Guid contratistaId, Guid rubroId, decimal monto, string nombre, string descripcion, IEnumerable<ImagenDTO> imagenes)
         {
             this.userId = userId;
             this.contratistaId = contratistaId;
@@ -22,6 +24,7 @@ namespace CleanArchitecture.Core.Events.Propuestas
             this.monto = monto;
             this.nombre = nombre;
             this.descripcion = descripcion;
+            Imagenes = imagenes;
         }
     }
 }

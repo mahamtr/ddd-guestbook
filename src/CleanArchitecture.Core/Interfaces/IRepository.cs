@@ -11,6 +11,7 @@ namespace CleanArchitecture.Core.Interfaces
         T GetById<T>(Guid id, string include) where T : BaseEntity;
         List<T> List<T>(params Expression<Func<T, object>>[] properties) where T : BaseEntity;
         T Add<T>(T entity) where T : BaseEntity;
+        IEnumerable<T> BulkInsert<T>(IEnumerable<T> entity) where T : BaseEntity;
         void Update<T>(T entity) where T : BaseEntity;
         void Delete<T>(T entity) where T : BaseEntity;
         

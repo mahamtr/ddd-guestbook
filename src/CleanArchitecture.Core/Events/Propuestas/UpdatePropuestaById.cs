@@ -15,8 +15,10 @@ namespace CleanArchitecture.Core.Events.Propuestas
         public string nombre;
         public string descripcion;
         public int Status { get; set; }
+        public IEnumerable<ImagenDTO> Imagenes { get; set; }
 
-        public UpdatePropuestaById(Guid Id, Guid contratistaId, Guid rubroId, decimal monto, string nombre, string descripcion, int status)
+
+        public UpdatePropuestaById(Guid Id, Guid contratistaId, Guid rubroId, decimal monto, string nombre, string descripcion, int status, IEnumerable<ImagenDTO> imagenes)
         {
             this.id = Id;
             this.contratistaId = contratistaId;
@@ -25,6 +27,7 @@ namespace CleanArchitecture.Core.Events.Propuestas
             this.nombre = nombre;
             this.descripcion = descripcion;
             Status = status;
+            Imagenes = imagenes;
         }
     }
 }

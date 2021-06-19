@@ -6,6 +6,7 @@ using CleanArchitecture.Core.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,6 +35,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 Updated = DateTime.UtcNow,
                 Status = Helpers.PropuestasStatus.EnRevision,
              });
+            var imagenes = _repository.BulkInsert(request.Imagenes.Select(a => new Imagen {  URL = a.URL, PropuestaId = propuesta.Id }));
             var prop = _repository.List<Propuesta>(t => t.Rubro, t => t.Contratista, t => t.Usuario).Find(p=> p.Id == propuesta.Id);
             return new PropuestaDTO {
                 Id = prop.Id,
@@ -46,6 +48,10 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 Updated = prop.Updated,
                 Created = prop.Created,
                 Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
+                Imagenes = imagenes.Select(a=> new ImagenDTO{ URL = a.URL}),
+                               ContratistaId = prop.ContratistaId,
+                RubroId = prop.RubroId,
+                UsuarioId = prop.UsuarioId
             };
 
         }

@@ -49,6 +49,15 @@ namespace CleanArchitecture.Infrastructure.Data
             return entity;
         }
 
+        public IEnumerable<T> BulkInsert<T>(IEnumerable<T> entity) where T : BaseEntity
+        {
+            _dbContext.Set<T>().AddRange(entity);
+            _dbContext.SaveChanges();
+
+            return entity;
+        }
+
+
         public void Delete<T>(T entity) where T : BaseEntity
         {
             _dbContext.Set<T>().Remove(entity);

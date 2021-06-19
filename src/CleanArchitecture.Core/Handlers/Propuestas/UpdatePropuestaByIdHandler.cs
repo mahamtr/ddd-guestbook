@@ -6,6 +6,7 @@ using CleanArchitecture.Core.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                 prop.Monto = request.monto;
                 prop.Updated= DateTime.UtcNow;
             prop.Status = (Helpers.PropuestasStatus)request.Status;
+            prop.Imagenes = request.Imagenes.Select(a => new Imagen { PropuestaId = prop.Id, URL = a.URL }).ToList();
 
                 _repository.Update(prop);
                 prop = _repository.List<Propuesta>(t => t.Contratista, t => t.Usuario, t => t.Rubro).Find(a => a.Id == request.id);
@@ -49,6 +51,9 @@ namespace CleanArchitecture.Core.Handlers.Propuestas
                     Updated = prop.Updated,
                     Created = prop.Created,
                     Status = PropuestasStatusExtensions.ToFriendlyString(prop.Status),
+                    ContratistaId = prop.ContratistaId,
+                    RubroId = prop.RubroId,
+                    UsuarioId = prop.UsuarioId
                 };
       
         

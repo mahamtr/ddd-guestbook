@@ -20,6 +20,7 @@ namespace CleanArchitecture.Core.Entities
         public virtual DateTime Created{ get; set; }
         public virtual DateTime Updated{ get; set; }
         public virtual PropuestasStatus Status{ get; set; }
+        public virtual ICollection<Imagen> Imagenes{ get; set; }
 
 
     }

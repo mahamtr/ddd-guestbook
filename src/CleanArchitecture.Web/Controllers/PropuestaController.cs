@@ -33,7 +33,7 @@ namespace CleanArchitecture.Web.Api
         public async Task<PropuestaDTO> AddPropuesta([FromBody] AddPropuestaRequest request)
         {
             var userId = new Guid((this.User.Identity as ClaimsIdentity).FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            return await _mediator.Send(new AddPropuesta(userId,request.ContratistaId, request.RubroId, request.Monto, request.Nombre,request.Descripcion));
+            return await _mediator.Send(new AddPropuesta(userId,request.ContratistaId, request.RubroId, request.Monto, request.Nombre,request.Descripcion,request.Imagenes));
         }
 
         [Authorize]
@@ -62,7 +62,7 @@ namespace CleanArchitecture.Web.Api
         [Authorize]
         public async Task<PropuestaDTO> UpdatePropuestaById([FromBody] UpdatePropuestaByIdRequest request)
         {
-            return await _mediator.Send(new UpdatePropuestaById(request.Id,request.ContratistaId,request.RubroId,request.Monto,request.Nombre,request.Descripcion,request.Status));
+            return await _mediator.Send(new UpdatePropuestaById(request.Id,request.ContratistaId,request.RubroId,request.Monto,request.Nombre,request.Descripcion,request.Status,request.Imagenes));
         }
 
     }
